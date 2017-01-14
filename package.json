@@ -1,0 +1,17 @@
+{
+  "name": "gulp-prettier",
+  "description": "Create vinyl streams to pipe to prettier",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "bhargavpatel/gulp-prettier",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "keywords": ["gulp", "prettier", "gulp-prettier"],
+  "author": "Bhargav R. Patel",
+  "license": "MIT"
+}
