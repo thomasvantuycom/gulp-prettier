@@ -5,11 +5,14 @@
   "main": "index.js",
   "repository": "bhargavpatel/gulp-prettier",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhargavrpatel/gulp-prettier.git"
   },
   "files": [
-    "index.js",
-    "lib"
+    "index.js"
   ],
   "keywords": ["gulp", "prettier", "gulp-prettier"],
   "author": "Bhargav R. Patel",
