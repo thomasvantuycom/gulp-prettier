@@ -1,20 +1,30 @@
 {
   "name": "gulp-prettier",
   "description": "Create vinyl streams to pipe to prettier",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
-  "repository": "bhargavpatel/gulp-prettier",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bhargavrpatel/gulp-prettier.git"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
   "files": [
     "index.js"
   ],
-  "keywords": ["gulp", "prettier", "gulp-prettier"],
+  "keywords": [
+    "gulp",
+    "prettier",
+    "gulp-prettier"
+  ],
   "author": "Bhargav R. Patel",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "^3.0.8",
+    "merge": "^1.2.0",
+    "prettier": "0.0.7",
+    "through2": "^2.0.3",
+    "vinyl-sourcemaps-apply": "^0.2.1"
+  }
 }
