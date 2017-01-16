@@ -2,8 +2,7 @@ const through = require('through2'),
   gutil = require('gulp-util'),
   prettier = require('prettier'),
   merge = require('merge'),
-  applySourceMap = require('vinyl-sourcemaps-apply'),
-  path = require('path');
+  applySourceMap = require('vinyl-sourcemaps-apply');
 
 var PluginError = gutil.PluginError;
 
