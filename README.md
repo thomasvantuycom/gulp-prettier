@@ -15,7 +15,7 @@ const gulp = require('gulp'),
 
 gulp.task('default', () => {
 	gulp.src('*.js')
-	.pipe(prettier({useFlowParser: true}))
+	.pipe(prettier({parser: 'flow'}))
 	.pipe(gulp.dest('./dist'))
 });
 ```
@@ -30,14 +30,14 @@ Please consult the [Prettier](https://github.com/jlongster/prettier) README to k
   // Number of spaces it should use per tab
   tabWidth: 2,
 
-  // Use the flow parser instead of babylon
-  useFlowParser: false,
+  // Use the babylon parser instead of flow
+  parser: 'babylon,
 
   // If true, will use single instead of double quotes
   singleQuote: false,
 
   // Controls the printing of trailing commas wherever possible
-  trailingComma: false,
+  trailingComma: 'none',
 
   // Controls the printing of spaces inside array and objects
   bracketSpacing: true
