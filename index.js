@@ -1,3 +1,4 @@
+'use strict';
 const through = require('through2'),
   gutil = require('gulp-util'),
   prettier = require('prettier'),
