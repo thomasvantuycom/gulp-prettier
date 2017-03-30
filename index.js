@@ -1,47 +1,33 @@
-const through = require('through2'),
-  gutil = require('gulp-util'),
-  prettier = require('prettier'),
-  merge = require('merge'),
-  applySourceMap = require('vinyl-sourcemaps-apply');
+const through = require('through2');
+const gutil = require('gulp-util');
+const prettier = require('prettier');
+const applySourceMap = require('vinyl-sourcemaps-apply');
+const _ = require('lodash');
 
 var PluginError = gutil.PluginError;
 
 module.exports = function(opt) {
   function transform(file, encoding, callback) {
-    if (file.isNull())
-      return callback(null, file);
-    if (file.isStream())
-      return callback(new PluginError(
-        'gulp-prettier',
-        'Streaming not supported'
-      ));
+    if (file.isNull()) return callback(null, file);
+    if (file.isStream()) return callback(new PluginError('gulp-prettier', 'Streaming not supported'));
 
     let data;
     let str = file.contents.toString('utf8');
 
-    options = merge(
-      {
-        // Fit code within this line limit
-        printWidth: 80,
-        // Number of spaces it should use per tab
-        tabWidth: 2,
-        // Use the flow parser instead of babylon
-        useFlowParser: true,
-        // If true, will use single instead of double quotes
-        singleQuote: false,
-        // Controls the printing of trailing commas wherever possible
-        trailingComma: false,
-        // Controls the printing of spaces inside array and objects
-        bracketSpacing: true
-      },
-      opt
-    );
+    const prettierOptions = _.omit(opt, 'check');
 
     try {
-      data = prettier.format(str, options);
+      data = prettier.format(str, prettierOptions);
     } catch (err) {
-      console.log('there was a fucking error b!!');
       return callback(new PluginError('gulp-prettier', err));
+    }
+
+    if (opt.check) {
+      if (data !== str) {
+        return callback(new PluginError('gulp-prettier', `${file.path} was not formatted with prettier`));
+      } else {
+        return callback(null, file);
+      }
     }
 
     if (data && data.v3SourceMap && file.sourceMap) {
