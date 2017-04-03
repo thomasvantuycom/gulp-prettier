@@ -1,49 +1,44 @@
-# Gulp Prettier [![Build Status](https://travis-ci.org/bhargavrpatel/gulp-prettier.svg?branch=master)](https://travis-ci.org/bhargavrpatel/gulp-prettier)
+# gulp-nf-prettier
 
-A [Gulp](http://gulpjs.com/) plugin which allows the users to use [Prettier](https://github.com/jlongster/prettier).
+A [Gulp][gulp] plugin to run Prettier on your code base.
 
-> Prettier is an opinionated JavaScript formatter inspired by refmt with advanced support for language features from ES2017, JSX, and Flow. It removes all original styling and ensures that all outputted JavaScript conforms to a consistent style. (See this blog post)
+## nf?
 
+Stands for the [Netflix][nf] fork of [gulp-pretter][gp]. We had certain requirements for the plugin so we forked it for ourselves.
 
-## Usage
+## Peer Dependency
 
-Simply pipe the input, and pass in arguments that you would to the regular format function.
+Prettier is a peer dependency of `gulp-nf-prettier`. That means you can upgrade Prettier independent of this plugin since the API shouldn't change too much. This also means that you should use [their docs][docs] to see how to utilize the library.
 
-```js
-const gulp = require('gulp'),
-  prettier = require('gulp-prettier');
+## check
 
-gulp.task('default', () => {
-	gulp.src('*.js')
-	.pipe(prettier({useFlowParser: true}))
-	.pipe(gulp.dest('./dist'))
-});
+This plugin has the ability to be run in a CI environment. Pass the `check` flag in the options and if any file hasn't been run through prettier with your options it will error, letting you fail your build.
+
+## Example usage
+
+```javascript
+gulp
+  .src(glob, { base: './' })
+  .pipe(prettier({
+    printWidth: 120,
+    tabWidth: 2,
+    parser: 'flow',
+    singleQuote: true,
+    trailingComma: 'es5',
+    bracketSpacing: true,
+    jsxBracketSameLine: true,
+    check: true
+  })
 ```
 
-Please consult the [Prettier](https://github.com/jlongster/prettier) README to know the possible optional arguments. At the time of this writing, these are the following optional arguments.
+## Credit
 
-```js
-{
-  // Fit code within this line limit
-  printWidth: 80,
+Forked from [Bhargav Patel][bp]. Credit to him to getting the ball rolling. Credit to the Gulp team. Consider [donating to them][oc]. Credit to [James Long][jlong] for an amazing library. Hire him for contract work.
 
-  // Number of spaces it should use per tab
-  tabWidth: 2,
-
-  // Use the flow parser instead of babylon
-  useFlowParser: false,
-
-  // If true, will use single instead of double quotes
-  singleQuote: false,
-
-  // Controls the printing of trailing commas wherever possible
-  trailingComma: false,
-
-  // Controls the printing of spaces inside array and objects
-  bracketSpacing: true
-}
-```
-
-## License
-
-[MIT License](https://raw.githubusercontent.com/bhargavrpatel/gulp-prettier/master/LICENSE)
+[gulp]: http://gulpjs.com/
+[bp]: https://github.com/bhargavrpatel
+[nf]: https://jobs.netflix.com/
+[gp]: https://github.com/bhargavrpatel/gulp-prettier
+[docs]: https://github.com/prettier/prettier
+[oc]: https://opencollective.com/gulpjs
+[jlong]: https://twitter.com/jlongster
