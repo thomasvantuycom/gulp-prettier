@@ -50,10 +50,14 @@ module.exports = function(opt) {
 
     if (data && data.v3SourceMap && file.sourceMap) {
       applySourceMap(file, data.v3SourceMap);
+      if (file.contents.toString() !== data.js) file.isPrettier = true;
       file.contents = new Buffer(data.js);
     } else {
+      if (file.contents.toString() !== data) file.isPrettier = true;
       file.contents = new Buffer(data);
     }
+    
+    file.isPrettier = true;
 
     callback(null, file);
   }
