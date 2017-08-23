@@ -20,7 +20,7 @@ module.exports = function(opt) {
     let str = file.contents.toString('utf8');
 
     options = merge(
-      {        
+      {
         // Fit code within this line limit
         printWidth: 80,
         // Number of spaces it should use per tab
