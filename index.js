@@ -56,8 +56,6 @@ module.exports = function(opt) {
       if (file.contents.toString() !== data) file.isPrettier = true;
       file.contents = new Buffer(data);
     }
-    
-    file.isPrettier = true;
 
     callback(null, file);
   }
