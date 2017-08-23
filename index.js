@@ -20,19 +20,23 @@ module.exports = function(opt) {
     let str = file.contents.toString('utf8');
 
     options = merge(
-      {
+      {        
         // Fit code within this line limit
         printWidth: 80,
         // Number of spaces it should use per tab
         tabWidth: 2,
-        // Use the flow parser instead of babylon
-        useFlowParser: true,
+        // Use tabs instead of spaces
+        useTabs: false,
+        // Remove semicolons
+        semi: false,
         // If true, will use single instead of double quotes
-        singleQuote: false,
+        singleQuote: true,
         // Controls the printing of trailing commas wherever possible
-        trailingComma: false,
+        trailingComma: "all",
         // Controls the printing of spaces inside array and objects
-        bracketSpacing: true
+        bracketSpacing: true,
+        // Put JSX angle brackets on a new line rather than the last line of attributes
+        jsxBracketSameLine: false,
       },
       opt
     );
