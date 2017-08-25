@@ -28,11 +28,11 @@ module.exports = function(opt) {
         // Use tabs instead of spaces
         useTabs: false,
         // Remove semicolons
-        semi: false,
+        semi: true,
         // If true, will use single instead of double quotes
-        singleQuote: true,
+        singleQuote: false,
         // Controls the printing of trailing commas wherever possible
-        trailingComma: "all",
+        trailingComma: "none",
         // Controls the printing of spaces inside array and objects
         bracketSpacing: true,
         // Put JSX angle brackets on a new line rather than the last line of attributes
