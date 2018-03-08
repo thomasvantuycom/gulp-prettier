@@ -26,14 +26,18 @@ module.exports = function(opt) {
         printWidth: 80,
         // Number of spaces it should use per tab
         tabWidth: 2,
-        // Use the flow parser instead of babylon
-        useFlowParser: true,
+        // Use tabs instead of spaces
+        useTabs: false,
+        // Remove semicolons
+        semi: true,
         // If true, will use single instead of double quotes
         singleQuote: false,
         // Controls the printing of trailing commas wherever possible
-        trailingComma: false,
+        trailingComma: "none",
         // Controls the printing of spaces inside array and objects
-        bracketSpacing: true
+        bracketSpacing: true,
+        // Put JSX angle brackets on a new line rather than the last line of attributes
+        jsxBracketSameLine: false,
       },
       opt
     );
@@ -47,8 +51,10 @@ module.exports = function(opt) {
 
     if (data && data.v3SourceMap && file.sourceMap) {
       applySourceMap(file, data.v3SourceMap);
+      if (file.contents.toString() !== data.js) file.isPrettier = true;
       file.contents = new Buffer(data.js);
     } else {
+      if (file.contents.toString() !== data) file.isPrettier = true;
       file.contents = new Buffer(data);
     }
 
