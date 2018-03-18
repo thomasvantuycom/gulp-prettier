@@ -18,7 +18,7 @@ module.exports = function(opt) {
     let data;
     let str = file.contents.toString('utf8');
 
-    options = merge(
+    let options = merge(
       {
         // Fit code within this line limit
         printWidth: 80,
