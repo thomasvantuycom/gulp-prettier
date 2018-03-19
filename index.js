@@ -7,13 +7,11 @@ const applySourceMap = require('vinyl-sourcemaps-apply');
 
 module.exports = function(opt) {
   function transform(file, encoding, callback) {
-    if (file.isNull())
-      return callback(null, file);
+    if (file.isNull()) return callback(null, file);
     if (file.isStream())
-      return callback(new PluginError(
-        'gulp-prettier',
-        'Streaming not supported'
-      ));
+      return callback(
+        new PluginError('gulp-prettier', 'Streaming not supported')
+      );
 
     let data;
     const str = file.contents.toString('utf8');
@@ -31,11 +29,11 @@ module.exports = function(opt) {
         // If true, will use single instead of double quotes
         singleQuote: false,
         // Controls the printing of trailing commas wherever possible
-        trailingComma: "none",
+        trailingComma: 'none',
         // Controls the printing of spaces inside array and objects
         bracketSpacing: true,
         // Put JSX angle brackets on a new line rather than the last line of attributes
-        jsxBracketSameLine: false,
+        jsxBracketSameLine: false
       },
       opt
     );
