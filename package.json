@@ -8,7 +8,7 @@
     "url": "git+https://github.com/bhargavrpatel/gulp-prettier.git"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "prettier --single-quote --write **/*.js && eslint .",
     "pretest": "npm run lint",
     "test": "mocha"
   },
