@@ -1,9 +1,9 @@
 'use strict';
-const through = require('through2'),
-  PluginError = require('plugin-error'),
-  prettier = require('prettier'),
-  merge = require('merge'),
-  applySourceMap = require('vinyl-sourcemaps-apply');
+const through = require('through2');
+const PluginError = require('plugin-error');
+const prettier = require('prettier');
+const merge = require('merge');
+const applySourceMap = require('vinyl-sourcemaps-apply');
 
 module.exports = function(opt) {
   function transform(file, encoding, callback) {
