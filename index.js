@@ -45,7 +45,6 @@ module.exports = function(opt) {
     try {
       data = prettier.format(str, options);
     } catch (err) {
-      console.log('there was a fucking error b!!');
       return callback(new PluginError('gulp-prettier', err));
     }
 
