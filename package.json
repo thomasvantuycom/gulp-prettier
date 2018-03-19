@@ -18,7 +18,8 @@
   "keywords": [
     "gulp",
     "prettier",
-    "gulp-prettier"
+    "gulp-prettier",
+    "gulpplugin"
   ],
   "author": "Bhargav R. Patel",
   "license": "MIT",
