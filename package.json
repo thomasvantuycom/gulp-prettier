@@ -8,6 +8,8 @@
     "url": "git+https://github.com/bhargavrpatel/gulp-prettier.git"
   },
   "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
     "test": "mocha"
   },
   "files": [
@@ -28,6 +30,7 @@
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
+    "eslint": "^4.19.0",
     "mocha": "^5.0.4",
     "vinyl": "^2.1.0"
   }
