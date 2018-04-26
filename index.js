@@ -12,25 +12,26 @@ module.exports = function(options) {
     if (file.isStream())
       return callback(new PluginError(pkg.name, 'Streaming not supported'));
 
-    let data;
     const str = file.contents.toString('utf8');
 
-    try {
-      data = prettier.format(str, options);
-    } catch (err) {
-      return callback(new PluginError(pkg.name, err));
-    }
+    prettier
+      .resolveConfig(file.path)
+      .then(config => {
+        const finalOptions = Object.assign({}, config, options);
+        const data = prettier.format(str, finalOptions);
 
-    if (data && data.v3SourceMap && file.sourceMap) {
-      applySourceMap(file, data.v3SourceMap);
-      if (file.contents.toString() !== data.js) file.isPrettier = true;
-      file.contents = new Buffer(data.js);
-    } else {
-      if (file.contents.toString() !== data) file.isPrettier = true;
-      file.contents = new Buffer(data);
-    }
+        if (data && data.v3SourceMap && file.sourceMap) {
+          applySourceMap(file, data.v3SourceMap);
+          if (file.contents.toString() !== data.js) file.isPrettier = true;
+          file.contents = new Buffer(data.js);
+        } else {
+          if (file.contents.toString() !== data) file.isPrettier = true;
+          file.contents = new Buffer(data);
+        }
 
-    callback(null, file);
+        callback(null, file);
+      })
+      .catch(err => callback(new PluginError(pkg.name, err)));
   }
 
   return through.obj(transform);
