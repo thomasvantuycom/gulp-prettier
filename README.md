@@ -4,6 +4,7 @@ A [Gulp](http://gulpjs.com/) plugin which allows the users to use [Prettier](htt
 
 > Prettier is an opinionated JavaScript formatter inspired by refmt with advanced support for language features from ES2017, JSX, and Flow. It removes all original styling and ensures that all outputted JavaScript conforms to a consistent style. (See this blog post)
 
+> *NOTE*: To ensure this plugin continues to serve its usefulness, I've added @TheDancingCode as the active collaborator. He will be the active maintainer - BRP (April 26, 2018)
 
 ## Usage
 
@@ -43,6 +44,13 @@ Please consult the [Prettier](https://github.com/jlongster/prettier) README to k
   bracketSpacing: true
 }
 ```
+
+## Collaborators
+I'd like to take this oppertunity to thank all of the contributors to this project:
+
+\- @akella
+\- @trusktr 
+\- @TheDancingCode
 
 ## License
 
