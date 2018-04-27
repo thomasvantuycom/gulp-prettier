@@ -1,6 +1,7 @@
 const assert = require('assert');
 const path = require('path');
 const Readable = require('stream').Readable;
+const Buffer = require('safe-buffer').Buffer;
 const PluginError = require('plugin-error');
 const Vinyl = require('vinyl');
 
@@ -60,7 +61,7 @@ describe('gulp-prettier', () => {
       cwd: process.cwd(),
       base: path.join(process.cwd(), 'src'),
       path: path.join(process.cwd(), 'src', 'default.js'),
-      contents: new Buffer(input)
+      contents: Buffer.from(input)
     });
 
     stream.once('data', file => {
@@ -84,7 +85,7 @@ describe('gulp-prettier', () => {
       cwd: process.cwd(),
       base: path.join(process.cwd(), 'src'),
       path: path.join(process.cwd(), 'src', 'options.js'),
-      contents: new Buffer(input)
+      contents: Buffer.from(input)
     });
 
     stream.once('data', file => {
@@ -106,7 +107,7 @@ describe('gulp-prettier', () => {
       cwd: process.cwd(),
       base: path.join(process.cwd(), 'src'),
       path: path.join(process.cwd(), 'src', 'error.js'),
-      contents: new Buffer(input)
+      contents: Buffer.from(input)
     });
 
     stream.on('error', err => {
@@ -128,7 +129,7 @@ describe('gulp-prettier', () => {
       cwd: process.cwd(),
       base: path.join(__dirname, 'fixtures'),
       path: path.join(__dirname, 'fixtures', 'config.js'),
-      contents: new Buffer(input)
+      contents: Buffer.from(input)
     });
 
     stream.once('data', file => {
@@ -152,7 +153,7 @@ describe('gulp-prettier', () => {
       cwd: process.cwd(),
       base: path.join(__dirname, 'fixtures'),
       path: path.join(__dirname, 'fixtures', 'config.js'),
-      contents: new Buffer(input)
+      contents: Buffer.from(input)
     });
 
     stream.once('data', file => {

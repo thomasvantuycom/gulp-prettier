@@ -1,4 +1,5 @@
 'use strict';
+const Buffer = require('safe-buffer').Buffer;
 const through = require('through2');
 const PluginError = require('plugin-error');
 const prettier = require('prettier');
@@ -23,10 +24,10 @@ module.exports = function(options) {
         if (data && data.v3SourceMap && file.sourceMap) {
           applySourceMap(file, data.v3SourceMap);
           if (file.contents.toString() !== data.js) file.isPrettier = true;
-          file.contents = new Buffer(data.js);
+          file.contents = Buffer.from(data.js);
         } else {
           if (file.contents.toString() !== data) file.isPrettier = true;
-          file.contents = new Buffer(data);
+          file.contents = Buffer.from(data);
         }
 
         callback(null, file);
