@@ -8,10 +8,14 @@ const applySourceMap = require('vinyl-sourcemaps-apply');
 const pkg = require('./package.json');
 
 module.exports = function(options) {
+  options = options || {};
+
   function transform(file, encoding, callback) {
     if (file.isNull()) return callback(null, file);
     if (file.isStream())
       return callback(new PluginError(pkg.name, 'Streaming not supported'));
+
+    options.filepath = file.path;
 
     const str = file.contents.toString('utf8');
 

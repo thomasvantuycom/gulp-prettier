@@ -165,4 +165,29 @@ describe('gulp-prettier', () => {
 
     stream.write(file);
   });
+
+  it('should work with non-js files', done => {
+    const stream = plugin();
+
+    const input = 'div{margin:1em}';
+
+    const file = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'notjs.css'),
+      contents: Buffer.from(input)
+    });
+
+    stream.once('data', file => {
+      assert.ok(file.isBuffer());
+      assert.equal(file.relative, 'notjs.css');
+      assert.equal(
+        file.contents.toString('utf8'),
+        'div {\n  margin: 1em;\n}\n'
+      );
+      done();
+    });
+
+    stream.write(file);
+  });
 });
