@@ -21,6 +21,9 @@
     "gulp-prettier",
     "gulpplugin"
   ],
+  "engines": {
+		"node": ">=4"
+  },
   "author": "Bhargav R. Patel",
   "license": "MIT",
   "dependencies": {
