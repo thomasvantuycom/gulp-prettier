@@ -3,41 +3,41 @@ const Buffer = require('safe-buffer').Buffer;
 const through = require('through2');
 const PluginError = require('plugin-error');
 const prettier = require('prettier');
-const applySourceMap = require('vinyl-sourcemaps-apply');
 
-const pkg = require('./package.json');
+const PLUGIN_NAME = 'gulp-prettier';
 
 module.exports = function(options) {
   options = options || {};
 
-  function transform(file, encoding, callback) {
-    if (file.isNull()) return callback(null, file);
-    if (file.isStream())
-      return callback(new PluginError(pkg.name, 'Streaming not supported'));
+  return through.obj(function(file, encoding, callback) {
+    if (file.isNull()) {
+      return callback(null, file);
+    }
 
-    options.filepath = file.path;
+    if (file.isStream()) {
+      return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+    }
 
-    const str = file.contents.toString('utf8');
+    const config = prettier.resolveConfig.sync(file.path);
+    const fileOptions = Object.assign({}, config, options, {
+      filepath: file.path
+    });
 
-    prettier
-      .resolveConfig(file.path)
-      .then(config => {
-        const finalOptions = Object.assign({}, config, options);
-        const data = prettier.format(str, finalOptions);
+    const unformattedCode = file.contents.toString('utf8');
 
-        if (data && data.v3SourceMap && file.sourceMap) {
-          applySourceMap(file, data.v3SourceMap);
-          if (file.contents.toString() !== data.js) file.isPrettier = true;
-          file.contents = Buffer.from(data.js);
-        } else {
-          if (file.contents.toString() !== data) file.isPrettier = true;
-          file.contents = Buffer.from(data);
-        }
+    try {
+      const formattedCode = prettier.format(unformattedCode, fileOptions);
 
-        callback(null, file);
-      })
-      .catch(err => callback(new PluginError(pkg.name, err)));
-  }
+      if (formattedCode !== unformattedCode) {
+        file.isPrettier = true;
+        file.contents = Buffer.from(formattedCode);
+      }
 
-  return through.obj(transform);
+      this.push(file);
+    } catch (error) {
+      this.emit('error', new PluginError(PLUGIN_NAME, error));
+    }
+
+    callback();
+  });
 };
