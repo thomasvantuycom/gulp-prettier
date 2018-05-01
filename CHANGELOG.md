@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/bhargavrpatel/gulp-prettier/compare/v1.1.0...master)
+## [2.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v1.1.0...v2.0.0) (2018-05-01)
 
 ### Bug Fixes
 
