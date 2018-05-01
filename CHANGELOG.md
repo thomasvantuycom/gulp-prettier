@@ -1,0 +1,31 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased](https://github.com/bhargavrpatel/gulp-prettier/compare/v1.1.0...master)
+
+### Bug Fixes
+
+* avoid deprecated new Buffer() ([d007ff9](https://github.com/bhargavrpatel/gulp-prettier/commit/d007ff9))
+* correct undeclared variable ([c9abbbe](https://github.com/bhargavrpatel/gulp-prettier/commit/c9abbbe))
+* use strict mode ([cf7bec7](https://github.com/bhargavrpatel/gulp-prettier/commit/cf7bec7))
+
+### Features
+
+* add support for languages other than js ([2eb0ed9](https://github.com/bhargavrpatel/gulp-prettier/commit/2eb0ed9))
+* adhere to .prettierrc ([d44a6b0](https://github.com/bhargavrpatel/gulp-prettier/commit/d44a6b0))
+* add `isPrettier` flag ([7d790fd](https://github.com/bhargavrpatel/gulp-prettier/commit/7d790fd))
+
+### BREAKING CHANGES
+
+* Upgrade Prettier to `^1.5.3` ([7d790fd](https://github.com/bhargavrpatel/gulp-prettier/commit/7d790fd))
+
+## [1.1.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v1.0.0...v1.1.0) (2017-01-16)
+
+### Bug fixes
+
+* Add dependencies
+
+## [1.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/86f02f9cdf4bc840624c21e1679dc75fad525de5...v1.0.0) (2017-01-15)
+
+Initial release
