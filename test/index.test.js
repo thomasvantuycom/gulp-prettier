@@ -191,3 +191,88 @@ describe('gulp-prettier', () => {
     stream.write(file);
   });
 });
+
+describe('gulp-prettier.check', () => {
+  it('should pass through formatted files', done => {
+    const stream = plugin.check();
+
+    const input = 'var foo = "bar";\n';
+
+    const file = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'formatted.js'),
+      contents: Buffer.from(input)
+    });
+
+    stream.once('data', file => {
+      assert.ok(file.isBuffer());
+      assert.equal(file.relative, 'formatted.js');
+      assert.equal(file.contents.toString('utf8'), input);
+      done();
+    });
+
+    stream.write(file);
+  });
+
+  it('should error on unformatted files', done => {
+    const stream = plugin.check();
+
+    const input = "var foo = 'bar'";
+
+    const file = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'unformatted.js'),
+      contents: Buffer.from(input)
+    });
+
+    stream.on('error', err => {
+      assert.ok(err instanceof PluginError);
+      assert.equal(err.plugin, pkg.name);
+      assert.ok(err.message.includes('Code style issues found'));
+      done();
+    });
+
+    stream.end(file);
+  });
+
+  it('should list the unformatted files in the error message', done => {
+    const stream = plugin.check();
+
+    const unformattedInput = "var foo = 'bar'";
+    const formattedInput = 'var foo = "bar";\n';
+
+    const fileA = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'a.js'),
+      contents: Buffer.from(unformattedInput)
+    });
+
+    const fileB = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'b.js'),
+      contents: Buffer.from(formattedInput)
+    });
+
+    const fileC = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(process.cwd(), 'src'),
+      path: path.join(process.cwd(), 'src', 'c.js'),
+      contents: Buffer.from(unformattedInput)
+    });
+
+    stream.on('error', err => {
+      assert.ok(err.message.includes('src/a.js'));
+      assert.ok(err.message.includes('src/c.js'));
+      assert.ok(!err.message.includes('src/b.js'));
+      done();
+    });
+
+    stream.write(fileA);
+    stream.write(fileB);
+    stream.end(fileC);
+  });
+});

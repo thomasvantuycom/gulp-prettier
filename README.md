@@ -27,9 +27,33 @@ gulp.task('default', () => {
 });
 ```
 
+To check whether or not your files adhere to Prettier's formatting, use `prettier.check`. This can be used as a validation step in CI scenarios.
+
+```js
+const gulp = require('gulp');
+const prettier = require('gulp-prettier');
+
+gulp.task('validate', () => {
+  return gulp.src('*.js')
+    .pipe(prettier.check({ singleQuote: true }));
+});
+```
+
 ## API
 
 ### prettier([options])
+
+Formats your files using Prettier.
+
+#### options
+
+Type: `Object`
+
+Consult the Prettier [options](https://prettier.io/docs/en/options.html).
+
+### prettier.check([options])
+
+Checks if your files have been formatted with Prettier and, if not, throws an error with a list of unformatted files. This is useful for running Prettier in CI scenarios.
 
 #### options
 
