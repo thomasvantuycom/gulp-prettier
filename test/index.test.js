@@ -20,8 +20,8 @@ describe('gulp-prettier', () => {
     });
 
     stream.on('data', file => {
-      assert.equal(file.isNull(), true);
-      assert.equal(file.relative, 'empty.js');
+      assert.strictEqual(file.isNull(), true);
+      assert.strictEqual(file.relative, 'empty.js');
       done();
     });
 
@@ -44,8 +44,8 @@ describe('gulp-prettier', () => {
 
     stream.on('error', err => {
       assert.ok(err instanceof PluginError);
-      assert.equal(err.plugin, pkg.name);
-      assert.equal(err.message, 'Streaming not supported');
+      assert.strictEqual(err.plugin, pkg.name);
+      assert.strictEqual(err.message, 'Streaming not supported');
       done();
     });
 
@@ -66,8 +66,8 @@ describe('gulp-prettier', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'default.js');
-      assert.equal(file.contents.toString('utf8'), 'var foo = "bar";\n');
+      assert.strictEqual(file.relative, 'default.js');
+      assert.strictEqual(file.contents.toString('utf8'), 'var foo = "bar";\n');
       done();
     });
 
@@ -90,8 +90,8 @@ describe('gulp-prettier', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'options.js');
-      assert.equal(file.contents.toString('utf8'), "var foo = 'bar'\n");
+      assert.strictEqual(file.relative, 'options.js');
+      assert.strictEqual(file.contents.toString('utf8'), "var foo = 'bar'\n");
       done();
     });
 
@@ -112,8 +112,8 @@ describe('gulp-prettier', () => {
 
     stream.on('error', err => {
       assert.ok(err instanceof PluginError);
-      assert.equal(err.plugin, pkg.name);
-      assert.equal(err.name, 'SyntaxError');
+      assert.strictEqual(err.plugin, pkg.name);
+      assert.strictEqual(err.name, 'SyntaxError');
       done();
     });
 
@@ -134,8 +134,8 @@ describe('gulp-prettier', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'config.js');
-      assert.equal(file.contents.toString('utf8'), "var foo = 'bar'\n");
+      assert.strictEqual(file.relative, 'config.js');
+      assert.strictEqual(file.contents.toString('utf8'), "var foo = 'bar'\n");
       done();
     });
 
@@ -158,8 +158,8 @@ describe('gulp-prettier', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'config.js');
-      assert.equal(file.contents.toString('utf8'), "var foo = 'bar';\n");
+      assert.strictEqual(file.relative, 'config.js');
+      assert.strictEqual(file.contents.toString('utf8'), "var foo = 'bar';\n");
       done();
     });
 
@@ -180,8 +180,8 @@ describe('gulp-prettier', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'notjs.css');
-      assert.equal(
+      assert.strictEqual(file.relative, 'notjs.css');
+      assert.strictEqual(
         file.contents.toString('utf8'),
         'div {\n  margin: 1em;\n}\n'
       );
@@ -207,8 +207,8 @@ describe('gulp-prettier.check', () => {
 
     stream.once('data', file => {
       assert.ok(file.isBuffer());
-      assert.equal(file.relative, 'formatted.js');
-      assert.equal(file.contents.toString('utf8'), input);
+      assert.strictEqual(file.relative, 'formatted.js');
+      assert.strictEqual(file.contents.toString('utf8'), input);
       done();
     });
 
@@ -229,7 +229,7 @@ describe('gulp-prettier.check', () => {
 
     stream.on('error', err => {
       assert.ok(err instanceof PluginError);
-      assert.equal(err.plugin, pkg.name);
+      assert.strictEqual(err.plugin, pkg.name);
       assert.ok(err.message.includes('Code style issues found'));
       done();
     });
