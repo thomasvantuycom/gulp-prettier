@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.0.0...v2.1.0) (2019-02-01)
+
+### Bug Fixes
+
+* upgrade through2 to v3.0.0 ([`7b16a27`](https://github.com/bhargavrpatel/gulp-prettier/commit/7b16a27))
+
+### Features
+
+* add `check` method for CI ([`5f67343`](https://github.com/bhargavrpatel/gulp-prettier/commit/5f67343))
+
 ## [2.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v1.1.0...v2.0.0) (2018-05-01)
 
 ### Bug Fixes
