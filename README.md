@@ -51,6 +51,8 @@ Type: `Object`
 
 Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
+`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath-options).
+
 ### prettier.check([options])
 
 Checks if your files have been formatted with Prettier and, if not, throws an error with a list of unformatted files. This is useful for running Prettier in CI scenarios.
@@ -60,6 +62,8 @@ Checks if your files have been formatted with Prettier and, if not, throws an er
 Type: `Object`
 
 Consult the Prettier [options](https://prettier.io/docs/en/options.html).
+
+`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath-options).
 
 ## Collaborators
 
