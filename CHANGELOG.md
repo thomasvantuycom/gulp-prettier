@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.0.0...v2.1.0) (2019-10-21)
+
+### Features
+
+* support editorconfig ([`4047a03`](https://github.com/bhargavrpatel/gulp-prettier/commit/4047a03))
+
 ## [2.1.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.0.0...v2.1.0) (2019-02-01)
 
 ### Bug Fixes
