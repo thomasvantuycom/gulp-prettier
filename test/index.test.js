@@ -190,6 +190,33 @@ describe('gulp-prettier', () => {
 
     stream.write(file);
   });
+
+  it('should support editorconfig', done => {
+    const options = { editorconfig: true };
+
+    const stream = plugin(options);
+
+    const input = 'function foo() { console.log("bar"); }';
+
+    const file = new Vinyl({
+      cwd: process.cwd(),
+      base: path.join(__dirname, 'fixtures'),
+      path: path.join(__dirname, 'fixtures', 'config.js'),
+      contents: Buffer.from(input)
+    });
+
+    stream.once('data', file => {
+      assert.ok(file.isBuffer());
+      assert.strictEqual(file.relative, 'config.js');
+      assert.strictEqual(
+        file.contents.toString('utf8'),
+        "function foo() {\n\tconsole.log('bar')\n}\n"
+      );
+      done();
+    });
+
+    stream.write(file);
+  });
 });
 
 describe('gulp-prettier.check', () => {

@@ -19,7 +19,7 @@ module.exports = function(options) {
       return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
     }
 
-    const config = prettier.resolveConfig.sync(file.path);
+    const config = prettier.resolveConfig.sync(file.path, options);
     const fileOptions = Object.assign({}, config, options, {
       filepath: file.path
     });
@@ -60,7 +60,7 @@ module.exports.check = function(options) {
         );
       }
 
-      const config = prettier.resolveConfig.sync(file.path);
+      const config = prettier.resolveConfig.sync(file.path, options);
       const fileOptions = Object.assign({}, config, options, {
         filepath: file.path
       });
