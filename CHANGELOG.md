@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.2.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.0.0...v2.1.0) (2019-10-21)
+## [2.3.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.2.0...v2.3.0) (2019-11-11)
+
+### Features
+
+* show filename on formatting error ([`565f3d3`](https://github.com/bhargavrpatel/gulp-prettier/commit/565f3d3))
+
+## [2.2.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.1.0...v2.2.0) (2019-10-21)
 
 ### Features
 
