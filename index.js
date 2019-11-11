@@ -36,7 +36,10 @@ module.exports = function(options) {
 
       this.push(file);
     } catch (error) {
-      this.emit('error', new PluginError(PLUGIN_NAME, error));
+      this.emit(
+        'error',
+        new PluginError(PLUGIN_NAME, error, { fileName: file.path })
+      );
     }
 
     callback();
@@ -79,7 +82,10 @@ module.exports.check = function(options) {
 
         this.push(file);
       } catch (error) {
-        this.emit('error', new PluginError(PLUGIN_NAME, error));
+        this.emit(
+          'error',
+          new PluginError(PLUGIN_NAME, error, { fileName: file.path })
+        );
       }
 
       callback();

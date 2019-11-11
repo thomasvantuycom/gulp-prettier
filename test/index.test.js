@@ -114,6 +114,10 @@ describe('gulp-prettier', () => {
       assert.ok(err instanceof PluginError);
       assert.strictEqual(err.plugin, pkg.name);
       assert.strictEqual(err.name, 'SyntaxError');
+      assert.strictEqual(
+        err.fileName,
+        path.join(process.cwd(), 'src', 'error.js')
+      );
       done();
     });
 
