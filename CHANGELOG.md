@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 
-* upgrade Prettier to v2.0.0 ([`af1a07c](https://github.com/bhargavrpatel/gulp-prettier/commit/af1a07c))
+* upgrade Prettier to v2.0.0 ([`af1a07c`](https://github.com/bhargavrpatel/gulp-prettier/commit/af1a07c))
 
 ### BREAKING CHANGES
 
