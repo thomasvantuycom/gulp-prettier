@@ -1,16 +1,15 @@
 'use strict';
 const path = require('path');
-const Buffer = require('safe-buffer').Buffer;
 const through = require('through2');
 const PluginError = require('plugin-error');
 const prettier = require('prettier');
 
 const PLUGIN_NAME = 'gulp-prettier';
 
-module.exports = function(options) {
+module.exports = function (options) {
   options = options || {};
 
-  return through.obj(function(file, encoding, callback) {
+  return through.obj(function (file, encoding, callback) {
     if (file.isNull()) {
       return callback(null, file);
     }
@@ -20,9 +19,7 @@ module.exports = function(options) {
     }
 
     const config = prettier.resolveConfig.sync(file.path, options);
-    const fileOptions = Object.assign({}, config, options, {
-      filepath: file.path
-    });
+    const fileOptions = { ...config, ...options, filepath: file.path };
 
     const unformattedCode = file.contents.toString('utf8');
 
@@ -46,13 +43,13 @@ module.exports = function(options) {
   });
 };
 
-module.exports.check = function(options) {
+module.exports.check = function (options) {
   options = options || {};
 
   const unformattedFiles = [];
 
   return through.obj(
-    function(file, encoding, callback) {
+    function (file, encoding, callback) {
       if (file.isNull()) {
         return callback(null, file);
       }
@@ -64,9 +61,7 @@ module.exports.check = function(options) {
       }
 
       const config = prettier.resolveConfig.sync(file.path, options);
-      const fileOptions = Object.assign({}, config, options, {
-        filepath: file.path
-      });
+      const fileOptions = { ...config, ...options, filepath: file.path };
 
       const unformattedCode = file.contents.toString('utf8');
 
@@ -90,7 +85,7 @@ module.exports.check = function(options) {
 
       callback();
     },
-    function(callback) {
+    function (callback) {
       if (unformattedFiles.length > 0) {
         const header =
           'Code style issues found in the following file(s). Forgot to run Prettier?';

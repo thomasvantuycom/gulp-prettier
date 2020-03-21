@@ -22,14 +22,13 @@
     "gulpplugin"
   ],
   "engines": {
-    "node": ">=4"
+    "node": ">=10"
   },
   "author": "Bhargav R. Patel",
   "license": "MIT",
   "dependencies": {
     "plugin-error": "^1.0.1",
-    "prettier": "^1.5.3",
-    "safe-buffer": "^5.1.2",
+    "prettier": "^2.0.0",
     "through2": "^3.0.0"
   },
   "devDependencies": {
