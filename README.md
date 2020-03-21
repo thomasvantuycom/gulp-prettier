@@ -6,6 +6,8 @@ A [Gulp](http://gulpjs.com/) plugin which allows the users to use [Prettier](htt
 
 > _NOTE_: To ensure this plugin continues to serve its usefulness, I've added @TheDancingCode as the active collaborator. He will be the active maintainer - BRP (April 26, 2018)
 
+> _NOTE_: @TheDancingCode is the new owner for this repository. - BRP (March 21, 2020)
+
 ## Install
 
 ```
