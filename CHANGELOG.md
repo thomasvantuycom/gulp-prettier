@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.3.0...v3.0.0) (2019-03-21)
+
+### Features
+
+* upgrade Prettier to v2.0.0 ([`af1a07c](https://github.com/bhargavrpatel/gulp-prettier/commit/af1a07c))
+
+### BREAKING CHANGES
+
+* drop support for Node versions 4, 6 and 8
+* [breaking changes in Prettier](https://prettier.io/blog/2020/03/21/2.0.0.html#breaking-changes)
+
+
 ## [2.3.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.2.0...v2.3.0) (2019-11-11)
 
 ### Features
