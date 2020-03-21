@@ -69,9 +69,9 @@ Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
 I'd like to take this oppertunity to thank all of the contributors to this project:
 
-\- @akella
-\- @trusktr
-\- @TheDancingCode
+* [@akella](https://github.com/akella)
+* [@trusktr](https://github.com/trusktr)
+* [@TheDancingCode](https://github.com/TheDancingCode)
 
 ## License
 
