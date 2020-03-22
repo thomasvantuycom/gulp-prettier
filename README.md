@@ -1,4 +1,4 @@
-# gulp-prettier ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TheDancingCode/gulp-prettier/ci) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier)
+# gulp-prettier ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TheDancingCode/gulp-prettier/CI) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier)
 
 > Format files with [Prettier](https://github.com/prettier/prettier)
 
