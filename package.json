@@ -1,11 +1,11 @@
 {
   "name": "gulp-prettier",
-  "description": "Create vinyl streams to pipe to prettier",
+  "description": "Format files with Prettier",
   "version": "3.0.0",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bhargavrpatel/gulp-prettier.git"
+    "url": "https://github.com/TheDancingCode/gulp-prettier.git"
   },
   "scripts": {
     "lint": "prettier --single-quote --write **/*.js && eslint .",
