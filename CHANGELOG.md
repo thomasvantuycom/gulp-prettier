@@ -1,7 +1,5 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
 ## [3.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.3.0...v3.0.0) (2019-03-21)
 
 ### Features

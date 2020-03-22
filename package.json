@@ -32,8 +32,26 @@
     "through2": "^3.0.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "eslint": "^6.8.0",
     "mocha": "^7.1.1",
+    "semantic-release": "^17.0.4",
     "vinyl": "^2.1.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "message": "release: ${nextRelease.version}"
+        }
+      ],
+      "@semantic-release/github"
+    ]
   }
 }
