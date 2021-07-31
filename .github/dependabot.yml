@@ -6,16 +6,3 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   versioning-strategy: increase-if-necessary
-  ignore:
-  - dependency-name: ava
-    versions:
-    - "> 3.5.0"
-    - "< 4"
-  - dependency-name: prettier
-    versions:
-    - "> 2.0.0"
-    - "< 3"
-  - dependency-name: "@semantic-release/changelog"
-    versions:
-    - "> 5.0.0"
-    - "< 6"

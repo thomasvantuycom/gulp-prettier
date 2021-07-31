@@ -20,9 +20,9 @@
     "gulpplugin"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
-  "author": "Bhargav R. Patel",
+  "author": "Thomas Vantuycom",
   "license": "MIT",
   "dependencies": {
     "plugin-error": "^1.0.1",
