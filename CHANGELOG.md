@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/TheDancingCode/gulp-prettier/compare/v3.0.0...v4.0.0) (2021-07-31)
+
+
+### Build System
+
+* drop Node 10 support ([ebfda2d](https://github.com/TheDancingCode/gulp-prettier/commit/ebfda2d1123bdfd73d4c10a24dcdf2520d946244))
+
+
+### BREAKING CHANGES
+
+* dropped Node 10 support.
+
 # Changelog
 
 ## [3.0.0](https://github.com/bhargavrpatel/gulp-prettier/compare/v2.3.0...v3.0.0) (2019-03-21)
