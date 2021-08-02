@@ -49,7 +49,7 @@ Type: `Object`
 
 Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
-`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath-options).
+`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath--options).
 
 ### prettier.check([options])
 
@@ -61,7 +61,7 @@ Type: `Object`
 
 Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
-`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath-options).
+`editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath--options).
 
 ## License
 
