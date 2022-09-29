@@ -35,7 +35,7 @@
     "ava": "^4.2.0",
     "p-event": "4.2.0",
     "semantic-release": "^17.2.3",
-    "vinyl": "^2.1.0"
+    "vinyl": "^3.0.0"
   },
   "release": {
     "plugins": [
