@@ -1,4 +1,4 @@
-# gulp-prettier ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TheDancingCode/gulp-prettier/CI) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+# gulp-prettier ![GitHub Workflow Status](https://github.com/TheDancingCode/gulp-prettier/actions/workflows/ci.yml/badge.svg) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 > Format files with [Prettier](https://github.com/prettier/prettier)
 
