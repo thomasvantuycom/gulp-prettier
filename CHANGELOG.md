@@ -1,3 +1,20 @@
+# [5.0.0](https://github.com/TheDancingCode/gulp-prettier/compare/v4.0.0...v5.0.0) (2023-07-05)
+
+
+### Build System
+
+* drop Node 12 and 14 support ([0c15e92](https://github.com/TheDancingCode/gulp-prettier/commit/0c15e92bcebdc3300d65e08da0e5f4814d16fcb7))
+
+
+### Features
+
+* upgrade Prettier to 3.0.0 ([f0e4174](https://github.com/TheDancingCode/gulp-prettier/commit/f0e4174e7a3b96bed84c4a3d8449a2f2f46a56aa))
+
+
+### BREAKING CHANGES
+
+* dropped Node 12 and 14 support.
+
 # [4.0.0](https://github.com/TheDancingCode/gulp-prettier/compare/v3.0.0...v4.0.0) (2021-07-31)
 
 

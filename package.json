@@ -1,7 +1,7 @@
 {
   "name": "gulp-prettier",
   "description": "Format files with Prettier",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "main": "index.js",
   "repository": {
     "type": "git",
