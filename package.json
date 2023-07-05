@@ -20,7 +20,7 @@
     "gulpplugin"
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "author": "Thomas Vantuycom",
   "license": "MIT",
