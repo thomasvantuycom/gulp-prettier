@@ -9,7 +9,7 @@ const PLUGIN_NAME = 'gulp-prettier';
 module.exports = function (options) {
   options = options || {};
 
-  return through.obj(function (file, encoding, callback) {
+  return through.obj(async function (file, encoding, callback) {
     if (file.isNull()) {
       return callback(null, file);
     }
@@ -18,13 +18,13 @@ module.exports = function (options) {
       return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
     }
 
-    const config = prettier.resolveConfig.sync(file.path, options);
+    const config = await prettier.resolveConfig(file.path, options);
     const fileOptions = { ...config, ...options, filepath: file.path };
 
     const unformattedCode = file.contents.toString('utf8');
 
     try {
-      const formattedCode = prettier.format(unformattedCode, fileOptions);
+      const formattedCode = await prettier.format(unformattedCode, fileOptions);
 
       if (formattedCode !== unformattedCode) {
         file.isPrettier = true;
@@ -49,7 +49,7 @@ module.exports.check = function (options) {
   const unformattedFiles = [];
 
   return through.obj(
-    function (file, encoding, callback) {
+    async function (file, encoding, callback) {
       if (file.isNull()) {
         return callback(null, file);
       }
@@ -60,13 +60,13 @@ module.exports.check = function (options) {
         );
       }
 
-      const config = prettier.resolveConfig.sync(file.path, options);
+      const config = await prettier.resolveConfig(file.path, options);
       const fileOptions = { ...config, ...options, filepath: file.path };
 
       const unformattedCode = file.contents.toString('utf8');
 
       try {
-        const isFormatted = prettier.check(unformattedCode, fileOptions);
+        const isFormatted = await prettier.check(unformattedCode, fileOptions);
 
         if (!isFormatted) {
           const filename = path
