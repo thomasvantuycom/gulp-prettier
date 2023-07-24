@@ -1,45 +1,48 @@
 'use strict';
 const path = require('path');
-const through = require('through2');
 const PluginError = require('plugin-error');
 const prettier = require('prettier');
+const { Transform } = require('stream');
 
 const PLUGIN_NAME = 'gulp-prettier';
 
 module.exports = function (options) {
   options = options || {};
 
-  return through.obj(async function (file, encoding, callback) {
-    if (file.isNull()) {
-      return callback(null, file);
-    }
-
-    if (file.isStream()) {
-      return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
-    }
-
-    const config = await prettier.resolveConfig(file.path, options);
-    const fileOptions = { ...config, ...options, filepath: file.path };
-
-    const unformattedCode = file.contents.toString('utf8');
-
-    try {
-      const formattedCode = await prettier.format(unformattedCode, fileOptions);
-
-      if (formattedCode !== unformattedCode) {
-        file.isPrettier = true;
-        file.contents = Buffer.from(formattedCode);
+  return new Transform({
+    objectMode: true,
+    async transform(file, encoding, callback) {
+      if (file.isNull()) {
+        return callback(null, file);
       }
 
-      this.push(file);
-    } catch (error) {
-      this.emit(
-        'error',
-        new PluginError(PLUGIN_NAME, error, { fileName: file.path })
-      );
-    }
+      if (file.isStream()) {
+        return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+      }
 
-    callback();
+      const config = await prettier.resolveConfig(file.path, options);
+      const fileOptions = { ...config, ...options, filepath: file.path };
+
+      const unformattedCode = file.contents.toString('utf8');
+
+      try {
+        const formattedCode = await prettier.format(unformattedCode, fileOptions);
+
+        if (formattedCode !== unformattedCode) {
+          file.isPrettier = true;
+          file.contents = Buffer.from(formattedCode);
+        }
+
+        this.push(file);
+      } catch (error) {
+        this.emit(
+          'error', 
+          new PluginError(PLUGIN_NAME, error, { fileName: file.path })
+        );
+      }
+
+      callback();
+    }
   });
 };
 
@@ -48,8 +51,9 @@ module.exports.check = function (options) {
 
   const unformattedFiles = [];
 
-  return through.obj(
-    async function (file, encoding, callback) {
+  return new Transform({
+    objectMode: true,
+    async transform(file, encoding, callback) {
       if (file.isNull()) {
         return callback(null, file);
       }
@@ -78,16 +82,16 @@ module.exports.check = function (options) {
         this.push(file);
       } catch (error) {
         this.emit(
-          'error',
+          'error', 
           new PluginError(PLUGIN_NAME, error, { fileName: file.path })
         );
       }
 
       callback();
     },
-    function (callback) {
+    flush(callback) {
       if (unformattedFiles.length > 0) {
-        const header =
+        const header = 
           'Code style issues found in the following file(s). Forgot to run Prettier?';
         const body = unformattedFiles.join('\n');
 
@@ -98,5 +102,5 @@ module.exports.check = function (options) {
 
       callback();
     }
-  );
+  });
 };

@@ -26,8 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "plugin-error": "^2.0.0",
-    "prettier": "^3.0.0",
-    "through2": "^4.0.2"
+    "prettier": "^3.0.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.0",
