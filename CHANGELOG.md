@@ -1,3 +1,16 @@
+# [6.0.0](https://github.com/thomasvantuycom/gulp-prettier/compare/v5.0.0...v6.0.0) (2023-11-03)
+
+
+### Code Refactoring
+
+* move to ESM and require Node 18 ([29268a0](https://github.com/thomasvantuycom/gulp-prettier/commit/29268a03955713828f36cb5a9fd8592d547f2d49))
+
+
+### BREAKING CHANGES
+
+* The plugin is now pure ESM
+* Requires Node 18
+
 # [5.0.0](https://github.com/TheDancingCode/gulp-prettier/compare/v4.0.0...v5.0.0) (2023-07-05)
 
 
