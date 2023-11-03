@@ -1,6 +1,8 @@
-# gulp-prettier ![GitHub Workflow Status](https://github.com/TheDancingCode/gulp-prettier/actions/workflows/ci.yml/badge.svg) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+# gulp-prettier 
 
 > Format files with [Prettier](https://github.com/prettier/prettier)
+
+[![GitHub Workflow Status](https://github.com/TheDancingCode/gulp-prettier/actions/workflows/ci.yml/badge.svg)](https://github.com/thomasvantuycom/gulp-prettier/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/gulp-prettier.svg)](https://www.npmjs.com/package/gulp-prettier) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Install
 
@@ -11,30 +13,30 @@ npm install gulp-prettier --save-dev
 ## Usage
 
 ```js
-const { src, dest } = require('gulp');
-const prettier = require('gulp-prettier');
+import gulp from 'gulp';
+import prettier from 'gulp-prettier';
 
 function format() {
-  return src('src/*.js')
+  return gulp.src('src/*.js')
     .pipe(prettier({ singleQuote: true }))
-    .pipe(dest('dist'));
+    .pipe(gulp.dest('dist'));
 }
 
-exports.default = format;
+export default format;
 ```
 
 To check whether or not your files adhere to Prettier's formatting, use `prettier.check`. This can be used as a validation step in CI scenarios.
 
 ```js
-const { src, dest } = require('gulp');
-const prettier = require('gulp-prettier');
+import gulp from 'gulp';
+import prettier from 'gulp-prettier';
 
 function validate() {
-  return src('dist/*.js')
+  return gulp.src('dist/*.js')
     .pipe(prettier.check({ singleQuote: true }));
 }
 
-exports.default = validate;
+export default validate;
 ```
 
 ## API
@@ -65,4 +67,4 @@ Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
 ## License
 
-MIT © [Bhargav R. Patel](https://github.com/bhargavrpatel), [Thomas Vantuycom](https://github.com/TheDancingCode)
+MIT © [Thomas Vantuycom](https://github.com/thomasvantuycom)
