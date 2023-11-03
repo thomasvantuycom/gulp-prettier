@@ -1,11 +1,18 @@
 {
   "name": "gulp-prettier",
-  "description": "Format files with Prettier",
   "version": "5.0.0",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TheDancingCode/gulp-prettier.git"
+  "description": "Format files with Prettier",
+  "license": "MIT",
+  "repository": "thomasvantuycom/gulp-prettier",
+  "author": {
+    "name": "Thomas Vantuycom",
+    "email": "thomasvantuycom@proton.me",
+    "url": "https://www.thomasvantuycom.com"
+  },
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=18"
   },
   "scripts": {
     "test": "xo && ava"
@@ -19,13 +26,6 @@
     "gulp-prettier",
     "gulpplugin"
   ],
-  "type": "module",
-  "exports": "./index.js",
-  "engines": {
-    "node": ">=18"
-  },
-  "author": "Thomas Vantuycom",
-  "license": "MIT",
   "dependencies": {
     "plugin-error": "^2.0.0",
     "prettier": "^3.0.0"
