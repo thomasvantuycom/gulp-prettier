@@ -1,106 +1,101 @@
-'use strict';
-const path = require('path');
-const PluginError = require('plugin-error');
-const prettier = require('prettier');
-const { Transform } = require('stream');
+import path from 'node:path';
+import {Transform} from 'node:stream';
+import {Buffer} from 'node:buffer';
+import process from 'node:process';
+import PluginError from 'plugin-error';
+import prettier from 'prettier';
 
-const PLUGIN_NAME = 'gulp-prettier';
+export default function plugin(options = {}) {
+	return new Transform({
+		objectMode: true,
+		async transform(file, encoding, callback) {
+			if (file.isNull()) {
+				return callback(null, file);
+			}
 
-module.exports = function (options) {
-  options = options || {};
+			if (file.isStream()) {
+				return callback(new PluginError('gulp-prettier', 'Streaming not supported'));
+			}
 
-  return new Transform({
-    objectMode: true,
-    async transform(file, encoding, callback) {
-      if (file.isNull()) {
-        return callback(null, file);
-      }
+			const config = await prettier.resolveConfig(file.path, options);
+			const fileOptions = {...config, ...options, filepath: file.path};
 
-      if (file.isStream()) {
-        return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
-      }
+			const unformattedCode = file.contents.toString('utf8');
 
-      const config = await prettier.resolveConfig(file.path, options);
-      const fileOptions = { ...config, ...options, filepath: file.path };
+			try {
+				const formattedCode = await prettier.format(unformattedCode, fileOptions);
 
-      const unformattedCode = file.contents.toString('utf8');
+				if (formattedCode !== unformattedCode) {
+					file.isPrettier = true;
+					file.contents = Buffer.from(formattedCode);
+				}
 
-      try {
-        const formattedCode = await prettier.format(unformattedCode, fileOptions);
+				this.push(file);
+			} catch (error) {
+				this.emit(
+					'error',
+					new PluginError('gulp-prettier', error, {fileName: file.path}),
+				);
+			}
 
-        if (formattedCode !== unformattedCode) {
-          file.isPrettier = true;
-          file.contents = Buffer.from(formattedCode);
-        }
+			callback();
+		},
+	});
+}
 
-        this.push(file);
-      } catch (error) {
-        this.emit(
-          'error', 
-          new PluginError(PLUGIN_NAME, error, { fileName: file.path })
-        );
-      }
+plugin.check = function (options = {}) {
+	const unformattedFiles = [];
 
-      callback();
-    }
-  });
-};
+	return new Transform({
+		objectMode: true,
+		async transform(file, encoding, callback) {
+			if (file.isNull()) {
+				return callback(null, file);
+			}
 
-module.exports.check = function (options) {
-  options = options || {};
+			if (file.isStream()) {
+				return callback(
+					new PluginError('gulp-prettier', 'Streaming not supported'),
+				);
+			}
 
-  const unformattedFiles = [];
+			const config = await prettier.resolveConfig(file.path, options);
+			const fileOptions = {...config, ...options, filepath: file.path};
 
-  return new Transform({
-    objectMode: true,
-    async transform(file, encoding, callback) {
-      if (file.isNull()) {
-        return callback(null, file);
-      }
+			const unformattedCode = file.contents.toString('utf8');
 
-      if (file.isStream()) {
-        return callback(
-          new PluginError(PLUGIN_NAME, 'Streaming not supported')
-        );
-      }
+			try {
+				const isFormatted = await prettier.check(unformattedCode, fileOptions);
 
-      const config = await prettier.resolveConfig(file.path, options);
-      const fileOptions = { ...config, ...options, filepath: file.path };
+				if (!isFormatted) {
+					const filename = path
+						.relative(process.cwd(), file.path)
+						.replaceAll('\\', '/');
+					unformattedFiles.push(filename);
+				}
 
-      const unformattedCode = file.contents.toString('utf8');
+				this.push(file);
+			} catch (error) {
+				this.emit(
+					'error',
+					new PluginError('gulp-prettier', error, {fileName: file.path}),
+				);
+			}
 
-      try {
-        const isFormatted = await prettier.check(unformattedCode, fileOptions);
+			callback();
+		},
+		flush(callback) {
+			if (unformattedFiles.length > 0) {
+				const header
+          = 'Code style issues found in the following file(s). Forgot to run Prettier?';
+				const body = unformattedFiles.join('\n');
 
-        if (!isFormatted) {
-          const filename = path
-            .relative(process.cwd(), file.path)
-            .replace(/\\/g, '/');
-          unformattedFiles.push(filename);
-        }
+				const message = `${header}\n${body}`;
 
-        this.push(file);
-      } catch (error) {
-        this.emit(
-          'error', 
-          new PluginError(PLUGIN_NAME, error, { fileName: file.path })
-        );
-      }
+				this.emit('error', new PluginError('gulp-prettier', message));
+			}
 
-      callback();
-    },
-    flush(callback) {
-      if (unformattedFiles.length > 0) {
-        const header = 
-          'Code style issues found in the following file(s). Forgot to run Prettier?';
-        const body = unformattedFiles.join('\n');
-
-        const message = `${header}\n${body}`;
-
-        this.emit('error', new PluginError(PLUGIN_NAME, message));
-      }
-
-      callback();
-    }
-  });
+			callback();
+		},
+	});
 };
