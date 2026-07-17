@@ -6,6 +6,10 @@ on:
   pull_request:
     branches:
       - master
+
+permissions:
+  contents: read # for checkout
+
 jobs:
   test:
     name: Test
@@ -15,9 +19,9 @@ jobs:
         node-version: [24, 26]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
@@ -28,17 +32,21 @@ jobs:
     needs: test
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version: "lts/*"
       - name: Install dependencies
         run: npm install
       - name: Release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
