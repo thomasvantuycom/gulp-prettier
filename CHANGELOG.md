@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/thomasvantuycom/gulp-prettier/compare/v6.0.0...v7.0.0) (2026-07-17)
+
+
+### Build System
+
+* require Node 24 ([a6a0904](https://github.com/thomasvantuycom/gulp-prettier/commit/a6a0904fb841973162a6aae9502fd34e5f3186ca))
+
+
+### BREAKING CHANGES
+
+* Requires Node 24
+
 # [6.0.0](https://github.com/thomasvantuycom/gulp-prettier/compare/v5.0.0...v6.0.0) (2023-11-03)
 
 
