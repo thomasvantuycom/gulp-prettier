@@ -54,9 +54,7 @@ plugin.check = function (options = {}) {
 			}
 
 			if (file.isStream()) {
-				return callback(
-					new PluginError('gulp-prettier', 'Streaming not supported'),
-				);
+				return callback(new PluginError('gulp-prettier', 'Streaming not supported'));
 			}
 
 			const config = await prettier.resolveConfig(file.path, options);
@@ -87,7 +85,7 @@ plugin.check = function (options = {}) {
 		flush(callback) {
 			if (unformattedFiles.length > 0) {
 				const header
-          = 'Code style issues found in the following file(s). Forgot to run Prettier?';
+					= 'Code style issues found in the following file(s). Forgot to run Prettier?';
 				const body = unformattedFiles.join('\n');
 
 				const message = `${header}\n${body}`;

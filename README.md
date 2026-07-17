@@ -6,7 +6,7 @@
 
 ## Install
 
-```
+```sh
 npm install gulp-prettier --save-dev
 ```
 
@@ -41,7 +41,7 @@ export default validate;
 
 ## API
 
-### prettier([options])
+### prettier(?options)
 
 Formats your files using Prettier.
 
@@ -53,7 +53,7 @@ Consult the Prettier [options](https://prettier.io/docs/en/options.html).
 
 `editorconfig: true` can also be passed to enable [EditorConfig support](https://prettier.io/docs/en/api.html#prettierresolveconfigfilepath--options).
 
-### prettier.check([options])
+### prettier.check(?options)
 
 Checks if your files have been formatted with Prettier and, if not, throws an error with a list of unformatted files. This is useful for running Prettier in CI scenarios.
 

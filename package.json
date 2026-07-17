@@ -53,5 +53,10 @@
       ],
       "@semantic-release/github"
     ]
+  },
+  "xo": {
+    "rules": {
+      "markdown/no-multiple-h1": "off"
+    }
   }
 }

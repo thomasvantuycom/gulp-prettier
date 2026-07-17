@@ -283,5 +283,5 @@ test('check() lists the unformatted files in the error message', async t => {
 	const output = await data;
 	t.true(output.message.includes('src/a.js'));
 	t.true(output.message.includes('src/c.js'));
-	t.true(!output.message.includes('src/b.js'));
+	t.falsy(output.message.includes('src/b.js'));
 });
