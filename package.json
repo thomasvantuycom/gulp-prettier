@@ -37,7 +37,7 @@
     "p-event": "^7.1.0",
     "semantic-release": "^25.0.7",
     "vinyl": "^3.0.1",
-    "xo": "^4.0.0"
+    "xo": "^5.0.1"
   },
   "release": {
     "plugins": [
